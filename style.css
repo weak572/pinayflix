@@ -1,0 +1,456 @@
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap");
+
+/* AI theme: Pure black with a single volt-yellow primary and condensed display type makes the dashboard cards the focus, and compact spacing keeps a data-heavy student tool quick to scan. */
+:where(:root) {
+  --fw-body: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --lh-display: 1.05;
+  --lh-heading: 1.2;
+  --lh-body: 1.6;
+  --lh-ui: 1.35;
+  --tracking-display: -0.02em;
+  --tracking-body: 0;
+  --tracking-label: 0.08em;
+  --measure-display: 20ch;
+  --measure-lead: 46ch;
+  --measure-prose: 68ch;
+  --font-mono: ui-monospace, "SF Mono", "Roboto Mono", Menlo, monospace;
+  --border-width-strong: 2px;
+}
+:root:root {
+  color-scheme: dark;
+  --accent-h: 62;
+  --accent-s: 100%;
+  --accent-l: 71%;
+  --page: #000000;
+  --surface: #141414;
+  --surface-2: #202020;
+  --surface-sunken: #0a0a0a;
+  --surface-accent: #282911;
+  --on-surface-accent: #ffffff;
+  --text: #ffffff;
+  --text-muted: #a6a6a6;
+  --text-faint: #808080;
+  --primary: #faff69;
+  --primary-hover: #fbff7e;
+  --on-primary: #111111;
+  --brand-text: #faff69;
+  --border: #303030;
+  --border-strong: #7e7e7e;
+  --border-width: 1px;
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow-1: 0 1px 2px #000000;
+  --shadow-2: 0 2px 10px #000000;
+  --shadow-3: 0 14px 36px #000000;
+  --density: 0.82;
+  --border-width-strong: 2px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --section-y: calc(var(--space-9) * var(--density));
+  --card-p: calc(var(--space-5) * var(--density));
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1.125rem;
+  --fs-lg: clamp(1.25rem, 1.16rem + 0.38vw, 1.375rem);
+  --fs-xl: clamp(1.5rem, 1.32rem + 0.75vw, 1.75rem);
+  --fs-2xl: clamp(1.9rem, 1.4rem + 2.2vw, 2.75rem);
+  --fs-3xl: clamp(2.4rem, 1.5rem + 4vw, 4rem);
+  --fs-4xl: clamp(2.9rem, 1.4rem + 6.5vw, 5.75rem);
+  --radius-pill: 999px;
+  --fs-base: 1rem;
+  --fs-hero: clamp(3rem, 1.4rem + 7.4vw, 6.75rem);
+  --type-ratio: 1.22;
+  --body-ratio: 1;
+  --font-display: "Big Shoulders Display", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --fw-display: 700;
+}
+:root .band[data-tone="surface"] {
+  color-scheme: dark;
+  --page: #141414;
+  --surface: #000000;
+  --surface-2: #0d0d0d;
+  --surface-sunken: #1d1d1d;
+  --surface-accent: #393a22;
+  --on-surface-accent: #ffffff;
+  --text: #ffffff;
+  --text-muted: #adadad;
+  --text-faint: #8a8a8a;
+  --primary: #faff69;
+  --primary-hover: #fbff7e;
+  --on-primary: #111111;
+  --brand-text: #faff69;
+  --border: #1f1f1f;
+  --border-strong: #737373;
+  background: var(--page);
+}
+:root .band[data-tone="accent"] {
+  color-scheme: dark;
+  --page: #262610;
+  --surface: #1e1e0d;
+  --surface-2: #292919;
+  --surface-sunken: #2f2f1a;
+  --surface-accent: #48491e;
+  --on-surface-accent: #ffffff;
+  --text: #ffffff;
+  --text-muted: #b3b3ab;
+  --text-faint: #939388;
+  --primary: #faff69;
+  --primary-hover: #fbff7e;
+  --on-primary: #111111;
+  --brand-text: #faff69;
+  --border: #39392a;
+  --border-strong: #83837a;
+  background: var(--page);
+}
+:root .band[data-tone="inverse"] {
+  color-scheme: light;
+  --page: #fffff6;
+  --surface: #ebebe2;
+  --surface-2: #dfdfd7;
+  --surface-sunken: #f5f5ec;
+  --surface-accent: #f7f7e7;
+  --on-surface-accent: #000000;
+  --text: #000000;
+  --text-muted: #595956;
+  --text-faint: #80807b;
+  --primary: #96993f;
+  --primary-hover: #818436;
+  --on-primary: #111111;
+  --brand-text: #787a32;
+  --border: #cfcfc7;
+  --border-strong: #81817c;
+  background: var(--page);
+}
+
+/* ============================================================================
+   POC platform layer. Sections reference these classes but do not define them
+   (.section/.wrap/.section-head come from site-components tokens.css, the rest
+   are used by many sections without a global rule). All values come from the
+   theme.css tokens the frontend injects, so data-variant restyles everything.
+   ========================================================================= */
+
+/* Section rhythm: the theme's --section-y is generous for landing pages, and
+   every section pads top AND bottom, so two sections in a row left a double
+   gap (2 x --section-y) of empty page. Cap it, and when two sections share a
+   background drop the second one's top padding: one gap between them. */
+.section { padding-block: clamp(32px, calc(var(--section-y, 96px) * 0.5), 56px); }
+.band[data-tone="page"] + .band[data-tone="page"] > .section,
+.band[data-tone="surface"] + .band[data-tone="surface"] > .section,
+.band[data-tone="accent"] + .band[data-tone="accent"] > .section,
+.band[data-tone="inverse"] + .band[data-tone="inverse"] > .section { padding-top: 0; }
+
+.wrap {
+  width: 100%;
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-7);
+}
+
+.section-head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-heading);
+  max-width: var(--measure-prose);
+}
+
+.section-note {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--fs-md);
+  max-width: var(--measure-lead);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--brand-text);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* Posture (theme.js POSTURE) for library sections outside the kit. */
+html[data-eyebrow]:not([data-eyebrow="mono-caps"]) .eyebrow { text-transform: none; letter-spacing: 0; font-size: var(--fs-sm); }
+[data-eyebrow="serif-italic"] .eyebrow { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: var(--fs-md); }
+[data-eyebrow="none"] .section-head .eyebrow { display: none; }
+[data-buttons="pill"] .btn { border-radius: var(--radius-pill); }
+[data-buttons="square"] .btn { border-radius: 0; }
+
+.display {
+  font-size: var(--fs-4xl);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  max-width: var(--measure-display);
+}
+
+.lede {
+  color: var(--text-muted);
+  font-size: var(--fs-md);
+  max-width: var(--measure-lead);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-ui);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.btn:hover { border-color: var(--text); }
+.btn-primary { background: var(--primary); border-color: var(--primary); color: var(--on-primary); box-shadow: var(--shadow-1); }
+.btn-primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+.btn-quiet { background: transparent; border-color: transparent; color: var(--brand-text); }
+.btn-quiet:hover { border-color: var(--border-strong); }
+.btn-sm { min-height: 36px; padding: var(--space-2) var(--space-4); font-size: var(--fs-sm); }
+
+.ph {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 120px;
+  border-radius: inherit;
+  background: var(--surface-2);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  z-index: var(--z-skip);
+  padding: var(--space-2) var(--space-4);
+  background: var(--primary);
+  color: var(--on-primary);
+  border-radius: var(--radius);
+}
+.skip-link:focus { top: var(--space-4); }
+
+/* header-nav and footer-simple ship with no CSS in the DB (they relied on a
+   site-wide stylesheet that no longer exists), so without these rules the nav
+   renders as a bulleted list. Remove once the rows carry their own CSS. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky, 5);
+  background: var(--page);
+  border-bottom: var(--border-width) solid var(--border);
+}
+.site-header .nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  min-height: 68px;
+  padding-block: var(--space-3);
+}
+.site-header .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-display);
+  text-decoration: none;
+}
+.site-header .brand-mark {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-pill);
+  background: var(--primary);
+}
+.site-header .nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: 0 0 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.site-header .nav-links a {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  text-decoration: none;
+}
+.site-header .nav-links a:hover { color: var(--text); }
+@media (max-width: 640px) {
+  .site-header .nav-links { order: 3; flex-basis: 100%; margin: 0; }
+  .site-header .nav > .btn { margin-left: auto; }
+}
+
+.site-footer {
+  padding-block: var(--space-6);
+  border-top: var(--border-width) solid var(--border);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+.site-footer .footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-6);
+}
+.site-footer nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
+.site-footer a { color: var(--text-muted); text-decoration: none; }
+.site-footer a:hover { color: var(--text); }
+
+/* Section bands: every section sits on a full-width band so a tone can paint
+   edge to edge even when the section itself is a centred .wrap. With an AI
+   theme, theme.css-derived rules (:root .band[data-tone]) re-point every
+   colour token on the band; these are the fallbacks for variant-only pages. */
+.band { background: var(--page); color: var(--text); }
+.band[data-tone="surface"] { background: var(--surface); }
+.band[data-tone="accent"] { background: var(--surface-accent); color: var(--on-surface-accent); }
+.band[data-tone="inverse"] { background: var(--surface-2); }
+
+html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: var(--space-8); }
+
+/* ─── site logo: mark + name in the nav/footer brand slot (src/logo.js) ─── */
+.site-logo { display: inline-flex; align-items: center; gap: 0.55em; color: inherit; line-height: 1; vertical-align: middle; }
+.site-logo-mark { display: inline-grid; place-items: center; flex: none; width: 1.75em; height: 1.75em; border-radius: calc(var(--radius) * 0.8); background: var(--primary); color: var(--on-primary); }
+.site-logo[data-shape="circle"] .site-logo-mark { border-radius: 50%; }
+.site-logo[data-shape="none"] .site-logo-mark { background: none; color: var(--brand-text, var(--primary)); width: 1.35em; height: 1.35em; }
+.site-logo-mark svg, .site-logo-mark .cld-icon, .site-logo-mark i > svg { width: 62%; height: 62%; font-size: 0.95em; line-height: 1; }
+.site-logo[data-shape="none"] .site-logo-mark svg { width: 100%; height: 100%; }
+.site-logo-initials { font-family: var(--font-display); font-weight: 700; font-size: 0.78em; letter-spacing: -0.02em; }
+.site-logo-img { display: block; height: 2em; width: auto; max-width: 180px; object-fit: contain; }
+/* A giant wordmark footer shows the name alone. */
+.od-footer-big .mark .site-logo-mark { display: none; }
+/* An icon the library could not resolve stays an empty <i>: show the initials instead. */
+.site-logo-mark i.cld-icon:empty::before { content: attr(data-initials); font-family: var(--font-display); font-style: normal; font-weight: 700; font-size: 0.78em; }
+
+/* A long headline (render.js markLongHeadlines, > 38 characters) is capped:
+   at hero size "Get More Done with AI-Driven Project Management" wrapped to five
+   lines in a split hero. !important because every hero sets its own h1 size
+   further down styles.css. The cap still follows the theme's type scale
+   (--type-ratio), or "Dramatic" would never reach a long hero headline. */
+h1.is-long { font-size: calc(clamp(32px, 4.2vw, 56px) * var(--type-ratio, 1)) !important; line-height: 1.08; }
+:lang(hi) h1.is-long, :lang(mr) h1.is-long, :lang(ne) h1.is-long { line-height: 1.32; }
+
+/* Long words never push a section wider than the screen: an email, a URL, an
+   address or a long name wraps inside its box instead of running off the page
+   on a phone (stress check of every section at 375/768/1280, 2026-10-12).
+   :where() keeps this at zero specificity, so a section's own rules win. */
+:where(.section, header, footer, nav) :where(h1, h2, h3, h4, h5, h6, p, li, dt, th, strong, em, small, label, figcaption, blockquote) { overflow-wrap: break-word; }
+:where(.section, header, footer, nav) :where(dd, td, address, a[href^="mailto:"], a[href^="tel:"], a[href^="http"]:not(.btn), [class*="value"], [class*="email"], [class*="contact"]) { overflow-wrap: anywhere; }
+:where(.section, header, footer, nav) :where(img, video, svg, iframe, canvas) { max-width: 100%; }
+:where(.section) :where(.btn) { max-width: 100%; }
+
+
+/* kit od */
+/* Kit "od": adapted from open-design's web-prototype seed
+   (github.com/nexu-io/open-design: design-templates/web-prototype, Apache-2.0).
+   Its tokens are mapped onto the theme's, so a theme drives colour, type
+   scale, spacing, borders and shadows, and its posture (data-* on <html>,
+   theme.js POSTURE) changes how labels, headings, cards, buttons, section
+   dividers and images look. */
+.od {
+  --od-bg: var(--page);
+  --od-surface: var(--surface);
+  --od-fg: var(--text);
+  --od-muted: var(--text-muted);
+  --od-border: var(--border);
+  --od-accent: var(--primary);
+  --od-accent-text: var(--brand-text);
+  --od-accent-soft: color-mix(in oklch, var(--primary) 14%, transparent);
+  --od-fg-soft: color-mix(in oklch, var(--text) 6%, transparent);
+  --od-mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
+  --od-fs-h1: var(--fs-hero, clamp(40px, 6vw, 76px));
+  --od-fs-h2: var(--fs-3xl, clamp(30px, 4vw, 48px));
+  --od-fs-h3: var(--fs-lg, 21px);
+  --od-fs-lead: calc(var(--fs-base, 1rem) * 1.18);
+  --od-density: var(--density, 1);
+  --od-scale: var(--type-ratio, 1);
+  --od-body: var(--body-ratio, 1);
+  --od-gap-sm: calc(12px * var(--od-density));
+  --od-gap-md: calc(20px * var(--od-density));
+  --od-gap-lg: calc(32px * var(--od-density));
+  --od-gap-xl: calc(56px * var(--od-density));
+  --od-gap-2xl: var(--section-y, 96px);
+  --od-line: var(--border-width, 1px);
+  --tint: color-mix(in oklch, var(--primary) 9%, var(--page));
+  color: var(--od-fg);
+  font-family: var(--font-body);
+}
+.od.section { padding-block: clamp(calc(var(--od-gap-2xl) * 0.6), 8vw, var(--od-gap-2xl)); }
+.od .container { width: 100%; max-width: 1140px; margin-inline: auto; padding-inline: var(--space-5); }
+.od p { text-wrap: pretty; margin: 0; }
+.od h1, .od h2, .od h3 { text-wrap: balance; margin: 0; }
+/* max-width: the platform theme caps every h1 at its measure without centring it,
+   so a centred hero's headline sat in a narrow box at the left (QA 2026-10-09).
+   Sections that want a narrower headline set their own cap. */
+.od h1 { font-family: var(--font-display); font-size: var(--od-fs-h1); line-height: 1.04; letter-spacing: -0.02em; font-weight: var(--fw-display, 600); max-width: none; }
+.od h2 { font-family: var(--font-display); font-size: var(--od-fs-h2); line-height: 1.1; letter-spacing: -0.015em; font-weight: var(--fw-display, 600); }
+.od h3 { font-size: var(--od-fs-h3); font-weight: 600; line-height: 1.3; letter-spacing: -0.005em; }
+.od .lead { font-size: var(--od-fs-lead); line-height: 1.55; color: var(--od-muted); max-width: 60ch; }
+.od .eyebrow { max-width: none; font-family: var(--font-body); font-size: var(--fs-sm, 14px); font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--od-accent-text); margin: 0 0 var(--od-gap-md); }
+.od .meta { font-size: var(--fs-sm, 13px); color: var(--od-muted); }
+.od .note { color: var(--od-muted); font-size: var(--fs-sm, 14px); }
+.od .avatar { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 999px; background: var(--od-accent-soft); color: var(--od-accent-text); font-weight: 600; font-size: var(--fs-sm, 14px); flex: none; }
+.od .head { max-width: 760px; margin-bottom: var(--od-gap-xl); }
+.od .head .lead { margin-top: var(--od-gap-md); }
+.od .head-center { text-align: center; margin-inline: auto; }
+.od .head-center .lead { margin-inline: auto; }
+
+.od .grid-2, .od .grid-3, .od .grid-4, .od .grid-1-2 { display: grid; gap: var(--od-gap-lg); }
+/* Only lists lose their default margin, padding and bullets: a .container that is also a grid keeps its centring and side padding. */
+.od :is(ul, ol):is(.grid-2, .grid-3, .grid-4, .grid-1-2) { margin: 0; padding: 0; list-style: none; }
+.od .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.od .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.od .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--od-gap-md); }
+.od .grid-1-2 { grid-template-columns: 1fr 2fr; gap: var(--od-gap-xl); align-items: start; }
+@media (max-width: 920px) { .od .grid-2, .od .grid-3, .od .grid-4, .od .grid-1-2 { grid-template-columns: 1fr; } }
+@media (min-width: 600px) and (max-width: 920px) { .od .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.od .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 11px 20px; border-radius: var(--radius); border: var(--od-line) solid transparent; font-size: calc(var(--fs-base, 1rem) * 0.94); font-weight: 500; letter-spacing: -0.005em; text-decoration: none; transition: background .15s ease, border-color .15s ease; }
+.od .btn-primary { background: var(--primary); color: var(--on-primary); border-color: var(--primary); box-shadow: none; }
+.od .btn-primary:hover { background: var(--primary-hover, color-mix(in oklch, var(--primary) 88%, black)); }
+.od .btn-secondary { background: transparent; color: var(--od-fg); border-color: var(--od-border); }
+.od .btn-secondary:hover { border-color: var(--od-fg); }
+.od .btn-ghost { background: transparent; color: var(--od-fg); padding-inline: 8px; }
+.od .btn-ghost::after { content: "\2192"; transition: transform .15s ease; }
+.od .btn-ghost:hover::after { transform: translateX(2px); }
+.od .cta-row { display: flex; flex-wrap: wrap; gap: var(--od-gap-sm); margin-top: var(--od-gap-lg); }
+
+.od .card { background: var(--od-surface); border: var(--od-line) solid var(--od-border); border-radius: var(--radius-lg); padding: var(--card-p, 28px); min-width: 0; box-shadow: var(--shadow-1, none); }
+.od .card-rule { border-top: var(--od-line) solid var(--od-fg); padding-top: 24px; min-width: 0; }
+.od .card-rule p, .od .card p { color: var(--od-muted); font-size: calc(var(--fs-base, 1rem) * 0.94); margin-top: 8px; }
+/* Big figures (prices, stats) take the display face: in mono, "₹100 – ₹140" and
+   "Prices on request" read as code beside the rest of the page (QA 2026-10-07).
+   Tabular figures keep columns of numbers aligned. */
+.od .num { font-family: var(--font-display); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.od .tag { display: inline-flex; align-items: center; padding: 4px 10px; border: var(--od-line) solid var(--od-border); border-radius: 999px; font-size: 12px; color: var(--od-muted); }
+.od .pill { display: inline-flex; align-items: center; padding: 4px 10px; background: var(--od-accent-soft); color: var(--od-accent-text); border-radius: 999px; font-family: var(--od-mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; }
+.od .media img, .od img.content-img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: var(
